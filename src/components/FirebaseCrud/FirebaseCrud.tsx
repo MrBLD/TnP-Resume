@@ -94,27 +94,29 @@ function FirebaseCrud() {
         inputStrings = [AchTitle, AchInfo]
         const hashedAch = addHashBetweenInputs(inputStrings);
 
-        get(child(dbref, "user-data/email-user1/" + ResumeName))
+        get(child(dbref, "user-data/email-user0/" + ResumeName))
             .then(async (snapshot) => {
                 if (snapshot.exists()) {
                     alert('Resume Data Exists, Please Select Update')
                     SelectData();
                 }
                 else {
-                    set(ref(database, "user-data/email-user1/" + ResumeName), {
+                    set(ref(database, "user-data/email-user0/"), {
                         UserInfo: hashedInfo,
-                        [EduCounter]: {
-                            EducationInfo: hashedEdu
+                        Edu: {
+                            [EduCounter]: hashedEdu
                         },
-                        [ExpCounter]: {
-                            ExperienceInfo: hashedExp
+                    })
+                    set(ref(database, "user-data/email-user0/" + ResumeName), {
+                        Exp: {
+                            [ExpCounter]: hashedExp
                         },
-                        [ProjCounter]: {
-                            ProjectInfo: hashedProj
+                        Proj: {
+                            [ProjCounter]: hashedProj
                         },
                         SkillInfo: hashedSkill,
-                        [AchCounter]: {
-                            AchievementInfo: hashedAch
+                        Ach: {
+                            [AchCounter]: hashedAch
                         },
                     })
                         .then(() => {
@@ -138,7 +140,7 @@ function FirebaseCrud() {
             return;
         }
 
-        get(child(dbref, "user-data/email-user1/" + ResumeName)).then(snapshot => {
+        get(child(dbref, "user-data/email-user0/" + ResumeName)).then(snapshot => {
             if (snapshot.exists()) {
                 console.log(snapshot.val())
                 let splittedData = snapshot.val().UserInfo.split("#");
@@ -208,22 +210,24 @@ function FirebaseCrud() {
         inputStrings = [AchTitle, AchInfo]
         const hashedAch = addHashBetweenInputs(inputStrings);
 
-        get(child(dbref, "user-data/email-user1/" + ResumeName)).then(snapshot => {
+        get(child(dbref, "user-data/email-user0/" + ResumeName)).then(snapshot => {
             if (snapshot.exists()) {
-                update(ref(database, "user-data/email-user1/" + ResumeName), {
+                update(ref(database, "user-data/email-user0/"), {
                     UserInfo: hashedInfo,
-                    [EduCounter]: {
-                        EducationInfo: hashedEdu
+                    Edu: {
+                        [EduCounter]: hashedEdu
                     },
-                    [ExpCounter]: {
-                        ExperienceInfo: hashedExp
+                })
+                update(ref(database, "user-data/email-user0/" + ResumeName), {
+                    Exp: {
+                        [ExpCounter]: hashedExp
                     },
-                    [ProjCounter]: {
-                        ProjectInfo: hashedProj
+                    Proj: {
+                        [ProjCounter]: hashedProj
                     },
                     SkillInfo: hashedSkill,
-                    [AchCounter]: {
-                        AchievementInfo: hashedAch
+                    Ach: {
+                        [AchCounter]: hashedAch
                     },
                 }).then(() => {
                     alert("user updated")
@@ -250,9 +254,9 @@ function FirebaseCrud() {
             return;
         }
         
-        get(child(dbref, "user-data/email-user1/" + ResumeName)).then(snapshot => {
+        get(child(dbref, "user-data/email-user0/" + ResumeName)).then(snapshot => {
             if (snapshot.exists()) {
-                remove(ref(database, "user-data/email-user1/" + ResumeName))
+                remove(ref(database, "user-data/email-user0/" + ResumeName))
                     .then(() => {
                         alert("user deleted")
                     })
