@@ -1,10 +1,10 @@
 import Image from "next/image";
-import FirebaseCrud from "@/components/FirebaseCrud/FirebaseCrud";
+import Dashboard from "./Dashboard/page";
 
 export default function Home() {
   return (
     <div className="flex-auto min-h-screen">
-      <FirebaseCrud/>
+      <Dashboard/>
     </div>
   );
 }
