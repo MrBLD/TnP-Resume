@@ -14,7 +14,7 @@ const courseData ={
       "price": 99.99,
       "instructor": "John Doe",
       "isFeatured": true,
-      "image": "/courses/guitar.jpg" 
+      "image": "/guitar.jpg" 
     },
     {
       "id": 2,
@@ -24,14 +24,14 @@ const courseData ={
       "price": 109.99,
       "instructor": "Jane Smith",
       "isFeatured": false,
-      "image": "/courses/piano.jpg" 
+      "image": "/piano.jpg" 
     },
   ]
   }
 
 function ResumeCards(){
   return (
-    <div className="min-h-screen bg-black py-12 pt-36">
+    <div className="min-h-screen py-12 pt-36">
       <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
           fill="white"
@@ -40,7 +40,7 @@ function ResumeCards(){
         <div className="flex flex-wrap justify-center">
             {courseData.courses.map((course) => (
                 <CardContainer className="inter-var m-4">
-                <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+                <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black/[0.3] dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
                   <CardItem
                     translateZ="50"
                     className="text-xl font-bold text-neutral-600 dark:text-white"
@@ -69,7 +69,7 @@ function ResumeCards(){
                       as="button"
                       className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
                     >
-                       Configure →
+                       Edit →
                     </CardItem>
                     <CardItem
                       translateZ={20}

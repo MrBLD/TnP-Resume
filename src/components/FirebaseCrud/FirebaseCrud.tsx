@@ -273,8 +273,9 @@ function FirebaseCrud() {
     }
 
     return (
-        <div>
+        <div className=" flex flex-rowin">
             <div>
+                <h1>Info Data</h1>
                 <label>ResumeName: </label>
                 <input type="text" value={ResumeName} onChange={(e: any) => { setResumeName(e.target.value) }} />
                 <br />
@@ -300,6 +301,7 @@ function FirebaseCrud() {
                 <br />
             </div>
             <div>
+            <h1>EDU Data</h1>
                 <label>InsttName</label>
                 <input type="text" value={InsttName} onChange={(e: any) => { setInsttName(e.target.value) }} />
                 <br />
@@ -325,6 +327,7 @@ function FirebaseCrud() {
                 <br />
             </div>
             <div>
+            <h1>Exp Data</h1>
                 <label>OrgName</label>
                 <input type="text" value={OrgName} onChange={(e: any) => { setOrgName(e.target.value) }} />
                 <br />
@@ -354,6 +357,7 @@ function FirebaseCrud() {
                 <br />
             </div>
             <div>
+            <h1>Proj Data</h1>
                 <label>PTitle</label>
                 <input type="text" value={PTitle} onChange={(e: any) => { setPTitle(e.target.value) }} />
                 <br />
@@ -375,6 +379,7 @@ function FirebaseCrud() {
                 <br />
             </div>
             <div>
+            <h1>Skills Data</h1>
                 <label>ProggLang</label>
                 <input type="text" value={ProggLang} onChange={(e: any) => { setProggLang(e.target.value) }} />
                 <br />
@@ -392,6 +397,7 @@ function FirebaseCrud() {
                 <br />
             </div>
             <div>
+            <h1>Ach Data</h1>
                 <label>AchTitle</label>
                 <input type="text" value={AchTitle} onChange={(e: any) => { setAchTitle(e.target.value) }} />
                 <br />
