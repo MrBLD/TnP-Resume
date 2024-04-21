@@ -33,7 +33,7 @@ function FirebaseCrud() {
         return newcounter;
     };
 
-    let [ResumeName, setResumeName] = useState<string>("");
+    let [UserName, setUserName] = useState<string>("");
     let [FirstName, setFirstName] = useState<string>("");
     let [LastName, setLastName] = useState<string>('');
     let [MobNo, setMobNo] = useState<string>('');
@@ -76,12 +76,12 @@ function FirebaseCrud() {
     }
 
     let InsertData = async () => {
-        if (isNullorWhiteSpaces(ResumeName) || isNullorWhiteSpaces(FirstName) || isNullorWhiteSpaces(MobNo) || isNullorWhiteSpaces(LastName)) {
+        if (isNullorWhiteSpaces(UserName) || isNullorWhiteSpaces(FirstName) || isNullorWhiteSpaces(MobNo) || isNullorWhiteSpaces(LastName)) {
             alert("Please fill all the Mandatory(*) fields");
             return;
         }
 
-        let inputStrings = [ResumeName, FirstName, LastName, MobNo, LinkedIn, GitHub];
+        let inputStrings = [UserName, FirstName, LastName, MobNo, LinkedIn, GitHub];
         const hashedInfo = addHashBetweenInputs(inputStrings);
         inputStrings = [InsttName, Course, Score, EduLocation, EduStartDate, EduEndDate]
         const hashedEdu = addHashBetweenInputs(inputStrings);
@@ -94,28 +94,28 @@ function FirebaseCrud() {
         inputStrings = [AchTitle, AchInfo]
         const hashedAch = addHashBetweenInputs(inputStrings);
 
-        get(child(dbref, "user-data/email-user0/" + ResumeName))
+        get(child(dbref, "user-data/" + UserName))
             .then(async (snapshot) => {
                 if (snapshot.exists()) {
                     alert('Resume Data Exists, Please Select Update')
                     SelectData();
                 }
                 else {
-                    set(ref(database, "user-data/email-user0/"), {
+                    set(ref(database, "user-data/"), {
                         UserInfo: hashedInfo,
-                        Edu: {
+                        Educations: {
                             [EduCounter]: hashedEdu
                         },
                     })
-                    set(ref(database, "user-data/email-user0/" + ResumeName), {
-                        Exp: {
+                    set(ref(database, "user-data/" + UserName), {
+                        Experiences: {
                             [ExpCounter]: hashedExp
                         },
-                        Proj: {
+                        Projects: {
                             [ProjCounter]: hashedProj
                         },
-                        SkillInfo: hashedSkill,
-                        Ach: {
+                        SkillsInfo: hashedSkill,
+                        Achievements: {
                             [AchCounter]: hashedAch
                         },
                     })
@@ -135,29 +135,29 @@ function FirebaseCrud() {
     }
 
     let SelectData = () => {
-        if (isNullorWhiteSpaces(ResumeName)) {
-            alert("Please enter ResumeName");
+        if (isNullorWhiteSpaces(UserName)) {
+            alert("Please enter UserName");
             return;
         }
 
-        get(child(dbref, "user-data/email-user0/" + ResumeName)).then(snapshot => {
+        get(child(dbref, "user-data/" + UserName)).then(snapshot => {
             if (snapshot.exists()) {
                 console.log(snapshot.val())
                 let splittedData = snapshot.val().UserInfo.split("#");
-                setResumeName(splittedData[0]);
+                setUserName(splittedData[0]);
                 setFirstName(splittedData[1]);
                 setLastName(splittedData[2]);
                 setMobNo(splittedData[3]);
                 setLinkedIn(splittedData[4]);
                 setGitHub(splittedData[5]);
-                splittedData = snapshot.val().Edu_0.EducationInfo.split("#");
+                splittedData = snapshot.val().Educations.Edu_0.split("#");
                 setInsttName(splittedData[0]);
                 setCourse(splittedData[1]);
                 setScore(splittedData[2]);
                 setEduLocation(splittedData[3]);
                 setEduStartDate(splittedData[4]);
                 setEduEndDate(splittedData[5]);
-                splittedData = snapshot.val().Exp_0.ExperienceInfo.split("#");
+                splittedData = snapshot.val().Experiences.Exp_0.split("#");
                 setOrgName(splittedData[0]);
                 setTitle(splittedData[1]);
                 setRole(splittedData[2]);
@@ -165,19 +165,19 @@ function FirebaseCrud() {
                 setExpLocation(splittedData[4]);
                 setExpStartDate(splittedData[5]);
                 setExpEndDate(splittedData[6]);
-                splittedData = snapshot.val().Proj_0.ProjectInfo.split("#");
+                splittedData = snapshot.val().Projects.Proj_0.split("#");
                 setPTitle(splittedData[0])
                 setPRole(splittedData[1])
                 setPDescription(splittedData[2])
                 setPExpLocation(splittedData[3])
                 setPStartDate(splittedData[4])
                 setPEndDate(splittedData[5])
-                splittedData = snapshot.val().Skill.SkillInfo.split("#");
+                splittedData = snapshot.val().SkillsInfo.split("#");
                 setProggLang(splittedData[0]);
                 setTools(splittedData[1]);
                 setLang(splittedData[2]);
                 setmore_info(splittedData[3]);
-                splittedData = snapshot.val().Ach_0.AchievementInfo.split("#");
+                splittedData = snapshot.val().Achievements.Ach_0.split("#");
                 setAchTitle(splittedData[0]);
                 setAchInfo(splittedData[1]);
             }
@@ -192,12 +192,12 @@ function FirebaseCrud() {
     }
 
     let UpdateData = () => {
-        if (isNullorWhiteSpaces(ResumeName)) {
-            alert("ResumeName is empty try to select ResumeName first with the select button");
+        if (isNullorWhiteSpaces(UserName)) {
+            alert("UserName is empty try to select UserName first with the select button");
             return;
         }
 
-        let inputStrings = [ResumeName, FirstName, LastName, MobNo, LinkedIn, GitHub];
+        let inputStrings = [UserName, FirstName, LastName, MobNo, LinkedIn, GitHub];
         const hashedInfo = addHashBetweenInputs(inputStrings);
         inputStrings = [InsttName, Course, Score, EduLocation, EduStartDate, EduEndDate]
         const hashedEdu = addHashBetweenInputs(inputStrings);
@@ -210,23 +210,29 @@ function FirebaseCrud() {
         inputStrings = [AchTitle, AchInfo]
         const hashedAch = addHashBetweenInputs(inputStrings);
 
-        get(child(dbref, "user-data/email-user0/" + ResumeName)).then(snapshot => {
+        get(child(dbref, "user-data/" + UserName)).then(snapshot => {
             if (snapshot.exists()) {
-                update(ref(database, "user-data/email-user0/"), {
+                update(ref(database, "user-data/"), {
                     UserInfo: hashedInfo,
                     Edu: {
                         [EduCounter]: hashedEdu
                     },
                 })
-                update(ref(database, "user-data/email-user0/" + ResumeName), {
-                    Exp: {
+                update(ref(database, "user-data/"), {
+                    UserInfo: hashedInfo,
+                    Educations: {
+                        [EduCounter]: hashedEdu
+                    },
+                })
+                update(ref(database, "user-data/" + UserName), {
+                    Experiences: {
                         [ExpCounter]: hashedExp
                     },
-                    Proj: {
+                    Projects: {
                         [ProjCounter]: hashedProj
                     },
-                    SkillInfo: hashedSkill,
-                    Ach: {
+                    SkillsInfo: hashedSkill,
+                    Achievements: {
                         [AchCounter]: hashedAch
                     },
                 }).then(() => {
@@ -249,14 +255,14 @@ function FirebaseCrud() {
     }
     
     let DeleteData = () => {
-        if (isNullorWhiteSpaces(ResumeName)) {
-            alert("ResumeName is empty to delete");
+        if (isNullorWhiteSpaces(UserName)) {
+            alert("UserName is empty to delete");
             return;
         }
         
-        get(child(dbref, "user-data/email-user0/" + ResumeName)).then(snapshot => {
+        get(child(dbref, "user-data/" + UserName)).then(snapshot => {
             if (snapshot.exists()) {
-                remove(ref(database, "user-data/email-user0/" + ResumeName))
+                remove(ref(database, "user-data/" + UserName))
                     .then(() => {
                         alert("user deleted")
                     })
@@ -280,8 +286,8 @@ function FirebaseCrud() {
         <div className=" flex flex-rowin">
             <div>
                 <h1>Info Data</h1>
-                <label>ResumeName: </label>
-                <input type="text" value={ResumeName} onChange={(e: any) => { setResumeName(e.target.value) }} />
+                <label>UserName: </label>
+                <input type="text" value={UserName} onChange={(e: any) => { setUserName(e.target.value) }} />
                 <br />
 
                 <label>FirstName</label>
