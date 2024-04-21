@@ -2,36 +2,41 @@
 import Image from "next/image";
 import React from "react";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import {Spotlight} from "@/components/ui/Spotlight";
 
 const courseData ={
-    "courses": [
-      {
-        "id": 1,
-        "title": "Guitar Fundamentals",
-        "slug": "guitar-fundamentals",
-        "description": "Learn the basics of playing guitar with our comprehensive beginner's course.",
-        "price": 99.99,
-        "instructor": "John Doe",
-        "isFeatured": true,
-        "image": "/courses/guitar.jpg" 
-      },
-      {
-        "id": 2,
-        "title": "Piano for Beginners",
-        "slug": "piano-for-beginners",
-        "description": "Start your musical journey with foundational piano skills taught by expert instructors.",
-        "price": 109.99,
-        "instructor": "Jane Smith",
-        "isFeatured": false,
-        "image": "/courses/piano.jpg" 
-      },
-    ]
-    }
+  "courses": [
+    {
+      "id": 1,
+      "title": "Resume_0",
+      "slug": "guitar-fundamentals",
+      "description": "Learn the basics of playing guitar with our comprehensive beginner's course.",
+      "price": 99.99,
+      "instructor": "John Doe",
+      "isFeatured": true,
+      "image": "/courses/guitar.jpg" 
+    },
+    {
+      "id": 2,
+      "title": "Resume_1",
+      "slug": "piano-for-beginners",
+      "description": "Start your musical journey with foundational piano skills taught by expert instructors.",
+      "price": 109.99,
+      "instructor": "Jane Smith",
+      "isFeatured": false,
+      "image": "/courses/piano.jpg" 
+    },
+  ]
+  }
 
-function page() {
+function ResumeCards(){
   return (
-    <div className="min-h-screen bg-black py-40 pt-36">
-        <h1 className="text-xs md:text-7xl text-center font-sans font-bold mb-8 text-yellow-100">All courses </h1>  
+    <div className="min-h-screen bg-black py-12 pt-36">
+      <Spotlight
+          className="-top-40 left-0 md:left-60 md:-top-20"
+          fill="white"
+        />
+        <h1 className="text-lg md:text-7xl text-center font-sans font-bold mb-8 text-white">All Resumes ({courseData.courses.length})</h1>  
         <div className="flex flex-wrap justify-center">
             {courseData.courses.map((course) => (
                 <CardContainer className="inter-var m-4">
@@ -64,14 +69,14 @@ function page() {
                       as="button"
                       className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
                     >
-                      Try now →
+                       Configure →
                     </CardItem>
                     <CardItem
                       translateZ={20}
                       as="button"
                       className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
                     >
-                      Sign up
+                      View
                     </CardItem>
                   </div>
                 </CardBody>
@@ -82,4 +87,4 @@ function page() {
   )
 }
 
-export default page
+export default ResumeCards
