@@ -231,7 +231,7 @@ function FirebaseCrud() {
 
     return (
         <main className="flex flex-row-reverse ">
-            <div className=" min-w-fit  max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black/[0.9]">
+            <div className="z-20 min-w-fit  max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black/[0.9]">
                 <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
                     Resume Details
                 </h2>

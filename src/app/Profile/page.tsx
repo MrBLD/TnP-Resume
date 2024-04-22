@@ -207,8 +207,8 @@ function ProfileCRUD() {
 
     return (
 
-        <main className="flex flex-row-reverse ">
-            <div className=" min-w-fit  max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black/[0.9]">
+        <main className="flex flex-row-reverse">
+            <div className=" min-w-fit z-20 max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black/[0.9]">
                 <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
                     User Profile Details
                 </h2>

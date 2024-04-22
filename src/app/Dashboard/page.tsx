@@ -10,7 +10,7 @@ import {
 function Dashboard() {
     return (
         <>
-            <div className='flex flex-row-reverse items-center h-screen mr-24 mt-14 m-5 '>
+            <div className='flex flex-row-reverse items-center h-screen mr-24 '>
                 <div >
                     <div className='text-cyan-900  font-bold text-6xl'>Bhaskar Lal Das</div>
                     <div className='flex flex-row-reverse '>
