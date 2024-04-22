@@ -52,7 +52,7 @@ function ResumeCards(){
                     translateZ="60"
                     className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                   >
-                    {course.description}
+                    {/* {course.description} */}
                   </CardItem>
                   <CardItem translateZ="100" className="w-full mt-4">
                     <Image
@@ -67,6 +67,7 @@ function ResumeCards(){
                     <CardItem
                       translateZ={20}
                       as="button"
+                      onClick={()=>window.location.href = '/NewResume'}
                       className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
                     >
                        Edit →
