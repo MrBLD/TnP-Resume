@@ -47,13 +47,13 @@ function ResumeCards(){
                   >
                     {course.title}
                   </CardItem>
-                  <CardItem
+                  {/* <CardItem
                     as="p"
                     translateZ="60"
                     className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                   >
-                    {/* {course.description} */}
-                  </CardItem>
+                    {course.description}
+                  </CardItem> */}
                   <CardItem translateZ="100" className="w-full mt-4">
                     <Image
                       src={course.image}

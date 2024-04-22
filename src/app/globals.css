@@ -13,9 +13,9 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: slategray;
+  background-color: #072638;
   border-radius: 12px;
-  border: 5px solid rgb(112, 168, 252);
+  border: 5px solid #f1c886;
   border-width: 2px;
   color: #fff;
   padding: 10px 20px;
