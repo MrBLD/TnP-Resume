@@ -8,3 +8,27 @@ body {
   background-position: center;
   /* Add other body styles as needed */
 }
+
+.add-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: slategray;
+  border-radius: 12px;
+  border: 5px solid rgb(112, 168, 252);
+  border-width: 2px;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input{
+  /* margin-top: 0.5rem; */
+  margin: 0.2rem;
+  margin-left: 0.5rem;
+  border-radius: 6px;
+  border: 5px solid hsl(52, 100%, 51%);
+  border-width: 0.1px;
+  padding: 0.2rem;
+}

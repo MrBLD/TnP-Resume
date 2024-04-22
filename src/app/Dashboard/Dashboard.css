@@ -1,0 +1,6 @@
+body {
+    background-image: url('/bg.svg');
+    background-size: cover;
+    background-position: center;
+    /* Add other body styles as needed */
+  }

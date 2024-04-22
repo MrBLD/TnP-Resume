@@ -76,15 +76,15 @@ function FirebaseCrud() {
         inputStrings = [AchExpTitle, AchInfo]
         const hashedAch = addHashBetweenInputs(inputStrings);
 
-        get(child(dbref, "user-data/" + UserName+ResumeName))
+        get(child(dbref, "user-data/" + UserName + ResumeName))
             .then(async (snapshot) => {
                 if (snapshot.exists()) {
                     alert('Resume Data Exists, Please Select Update')
                     SelectData();
                 }
                 else {
-                    console.log("user-data/" + UserName+"/" + ResumeName)
-                    set(ref(database, "user-data/" + UserName+"/" + ResumeName), {
+                    console.log("user-data/" + UserName + "/" + ResumeName)
+                    set(ref(database, "user-data/" + UserName + "/" + ResumeName), {
                         Experiences: {
                             [ExpCounter]: hashedExp
                         },
@@ -117,7 +117,7 @@ function FirebaseCrud() {
             return;
         }
 
-        get(child(dbref, "user-data/" + UserName+"/" + ResumeName)).then(snapshot => {
+        get(child(dbref, "user-data/" + UserName + "/" + ResumeName)).then(snapshot => {
             if (snapshot.exists()) {
                 console.log(snapshot.val())
                 let splittedData = snapshot.val().Experiences.Exp_0.split("#");
@@ -171,7 +171,7 @@ function FirebaseCrud() {
 
         get(child(dbref, "user-data/" + UserName)).then(snapshot => {
             if (snapshot.exists()) {
-                update(ref(database, "user-data/" + UserName+"/" + ResumeName), {
+                update(ref(database, "user-data/" + UserName + "/" + ResumeName), {
                     Experiences: {
                         [ExpCounter]: hashedExp
                     },
@@ -207,9 +207,9 @@ function FirebaseCrud() {
             return;
         }
 
-        get(child(dbref, "user-data/" + UserName+ResumeName)).then(snapshot => {
+        get(child(dbref, "user-data/" + UserName + ResumeName)).then(snapshot => {
             if (snapshot.exists()) {
-                remove(ref(database, "user-data/" + UserName+ResumeName))
+                remove(ref(database, "user-data/" + UserName + ResumeName))
                     .then(() => {
                         alert("user deleted")
                     })
@@ -230,100 +230,132 @@ function FirebaseCrud() {
     }
 
     return (
-        <div className=" flex flex-rowin">
-            <div>
-                <h1>Info Data</h1>
-                <label>UserName: </label>
-                <input type="text" value={UserName} onChange={(e: any) => { setUserName(e.target.value) }} />
-                <br />
-                <label>ResumeName: </label>
-                <input type="text" value={ResumeName} onChange={(e: any) => { setResumeName(e.target.value) }} />
-                <br />
+        <main className="flex flex-row-reverse ">
+            <div className=" min-w-fit  max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black/[0.9]">
+                <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+                    Resume Details
+                </h2>
+                <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
+                    Fill the details to create a new resume.
+                </p>
+                <div className="flex flex-col items-center">
+                    <h1 className="text-xl font-semibold">Info Data</h1>
+                    <div>
+                        <label>UserName: </label>
+                        <br />
+                        <input type="text" value={UserName} onChange={(e: any) => { setUserName(e.target.value) }} />
+                        <br />
+                        <label>ResumeName: </label>
+                        <br />
+                        <input type="text" value={ResumeName} onChange={(e: any) => { setResumeName(e.target.value) }} />
+                        <br />
 
-                <h1>Exp Data</h1>
-                <label>OrgName</label>
-                <input type="text" value={OrgName} onChange={(e: any) => { setOrgName(e.target.value) }} />
-                <br />
+                        <h1 className="text-xl font-semibold">Exp Data</h1>
+                        <label>OrgName</label>
+                        <br />
+                        <input type="text" value={OrgName} onChange={(e: any) => { setOrgName(e.target.value) }} />
+                        <br />
 
-                <label>ExpTitle</label>
-                <input type="text" value={ExpTitle} onChange={(e: any) => { setExpTitle(e.target.value) }} />
-                <br />
+                        <label>ExpTitle</label>
+                        <br />
+                        <input type="text" value={ExpTitle} onChange={(e: any) => { setExpTitle(e.target.value) }} />
+                        <br />
 
-                <label>ExpRole</label>
-                <input type="text" value={ExpRole} onChange={(e: any) => { setExpRole(e.target.value) }} />
-                <br />
+                        <label>ExpRole</label>
+                        <br />
+                        <input type="text" value={ExpRole} onChange={(e: any) => { setExpRole(e.target.value) }} />
+                        <br />
 
-                <label>Description</label>
-                <input type="text" value={Description} onChange={(e: any) => { setDescription(e.target.value) }} />
-                <br />
+                        <label>Description</label>
+                        <br />
+                        <input type="text" value={Description} onChange={(e: any) => { setDescription(e.target.value) }} />
+                        <br />
 
-                <label>ExpLocation</label>
-                <input type="text" value={ExpLocation} onChange={(e: any) => { setExpLocation(e.target.value) }} />
-                <br />
+                        <label>ExpLocation</label>
+                        <br />
+                        <input type="text" value={ExpLocation} onChange={(e: any) => { setExpLocation(e.target.value) }} />
+                        <br />
 
-                <label>EduStartDate</label>
-                <input type="text" value={ExpStartDate} onChange={(e: any) => { setExpStartDate(e.target.value) }} />
-                <br />
+                        <label>EduStartDate</label>
+                        <br />
+                        <input type="text" value={ExpStartDate} onChange={(e: any) => { setExpStartDate(e.target.value) }} />
+                        <br />
 
-                <label>EduEndDate</label>
-                <input type="text" value={ExpEndDate} onChange={(e: any) => { setExpEndDate(e.target.value) }} />
-                <br />
+                        <label>EduEndDate</label>
+                        <br />
+                        <input type="text" value={ExpEndDate} onChange={(e: any) => { setExpEndDate(e.target.value) }} />
+                        <br />
+                    </div>
+                    <h1 className="text-xl font-semibold">Proj Data</h1>
+                    <div>
+                        <label>PTitle</label>
+                        <br />
+                        <input type="text" value={PTitle} onChange={(e: any) => { setPTitle(e.target.value) }} />
+                        <br />
+
+                        <label>PRole</label>
+                        <br />
+                        <input type="text" value={PRole} onChange={(e: any) => { setPRole(e.target.value) }} />
+                        <br />
+
+                        <label>PDescription</label>
+                        <br />
+                        <input type="text" value={PDescription} onChange={(e: any) => { setPDescription(e.target.value) }} />
+                        <br />
+
+                        <label>PStartDate</label>
+                        <br />
+                        <input type="text" value={PStartDate} onChange={(e: any) => { setPStartDate(e.target.value) }} />
+                        <br />
+
+                        <label>PEndDate</label>
+                        <br />
+                        <input type="text" value={PEndDate} onChange={(e: any) => { setPEndDate(e.target.value) }} />
+                        <br />
+                    </div>
+                    <h1 className="text-xl font-semibold">Skills Data</h1>
+                    <div>
+                        <label>ProggLang</label>
+                        <br />
+                        <input type="text" value={ProggLang} onChange={(e: any) => { setProggLang(e.target.value) }} />
+                        <br />
+
+                        <label>Tools</label>
+                        <br />
+                        <input type="text" value={Tools} onChange={(e: any) => { setTools(e.target.value) }} />
+                        <br />
+
+                        <label>Lang</label>
+                        <br />
+                        <input type="text" value={Lang} onChange={(e: any) => { setLang(e.target.value) }} />
+                        <br />
+
+                        <label>more_info</label>
+                        <br />
+                        <input type="text" value={more_info} onChange={(e: any) => { setmore_info(e.target.value) }} />
+                        <br />
+                    </div>
+                    <h1 className="text-xl font-semibold">Ach Data</h1>
+                    <div>
+                        <label>AchExpTitle</label>
+                        <br />
+                        <input type="text" value={AchExpTitle} onChange={(e: any) => { setAchExpTitle(e.target.value) }} />
+                        <br />
+                        <label>AchInfo</label>
+                        <br />
+                        <input type="text" value={AchInfo} onChange={(e: any) => { setAchInfo(e.target.value) }} />
+                        <br />
+                    </div>
+                </div>
+                <div className="grid grid-cols-2">
+                    <button className="p-1 bg-slate-700 m-2 border-yellow-500 border-2 rounded" onClick={InsertData}>Insert data</button>
+                    <button className="p-1 bg-slate-700 m-2 border-yellow-500 border-2 rounded" onClick={UpdateData}>Update data</button>
+                    <button className="p-1 bg-slate-700 m-2 border-yellow-500 border-2 rounded" onClick={SelectData}>Select data</button>
+                    <button className="p-1 bg-slate-700 m-2 border-yellow-500 border-2 rounded" onClick={DeleteData}>Delete data</button>
+                </div>
             </div>
-            <div>
-                <h1>Proj Data</h1>
-                <label>PTitle</label>
-                <input type="text" value={PTitle} onChange={(e: any) => { setPTitle(e.target.value) }} />
-                <br />
 
-                <label>PRole</label>
-                <input type="text" value={PRole} onChange={(e: any) => { setPRole(e.target.value) }} />
-                <br />
-
-                <label>PDescription</label>
-                <input type="text" value={PDescription} onChange={(e: any) => { setPDescription(e.target.value) }} />
-                <br />
-
-                <label>PStartDate</label>
-                <input type="text" value={PStartDate} onChange={(e: any) => { setPStartDate(e.target.value) }} />
-                <br />
-
-                <label>PEndDate</label>
-                <input type="text" value={PEndDate} onChange={(e: any) => { setPEndDate(e.target.value) }} />
-                <br />
-            </div>
-            <div>
-                <h1>Skills Data</h1>
-                <label>ProggLang</label>
-                <input type="text" value={ProggLang} onChange={(e: any) => { setProggLang(e.target.value) }} />
-                <br />
-
-                <label>Tools</label>
-                <input type="text" value={Tools} onChange={(e: any) => { setTools(e.target.value) }} />
-                <br />
-
-                <label>Lang</label>
-                <input type="text" value={Lang} onChange={(e: any) => { setLang(e.target.value) }} />
-                <br />
-
-                <label>more_info</label>
-                <input type="text" value={more_info} onChange={(e: any) => { setmore_info(e.target.value) }} />
-                <br />
-            </div>
-            <div>
-                <h1>Ach Data</h1>
-                <label>AchExpTitle</label>
-                <input type="text" value={AchExpTitle} onChange={(e: any) => { setAchExpTitle(e.target.value) }} />
-                <br />
-                <label>AchInfo</label>
-                <input type="text" value={AchInfo} onChange={(e: any) => { setAchInfo(e.target.value) }} />
-                <br />
-            </div>
-
-            <button onClick={InsertData}>Insert data</button>
-            <button onClick={UpdateData}>Update data</button>
-            <button onClick={SelectData}>Select data</button>
-            <button onClick={DeleteData}>Delete data</button>
-        </div>
+        </main>
     )
 }
 
