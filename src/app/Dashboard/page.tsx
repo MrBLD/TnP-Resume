@@ -12,7 +12,7 @@ function Dashboard() {
         <>
             <div className='flex flex-row-reverse items-center h-screen mr-24 mt-14 m-5 '>
                 <div >
-                    <div className='text-cyan-900 font-bold text-6xl'>Bhaskar Lal Das</div>
+                    <div className='text-cyan-900  font-bold text-6xl'>Bhaskar Lal Das</div>
                     <div className='flex flex-row-reverse '>
                         <div className='flex items-end flex-col p-10'>                    <div className='flex space-x-2'>
                             <span className="text-cyan-900 font-semibold text-2xl">
