@@ -6,7 +6,6 @@ import { useState } from "react";
 const database = firebaseConfig();
 const dbref = ref(database);
 
-
 function addHashBetweenInputs(inputs: string[]): string {
     const allEmpty = inputs.every(input => input === '');
     if (allEmpty) {
