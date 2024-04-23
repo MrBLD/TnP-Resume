@@ -25,10 +25,10 @@ body {
 
 input{
   /* margin-top: 0.5rem; */
-  margin: 0.2rem;
-  margin-left: 0.5rem;
+  /* margin: 0.2rem; */
+  /* margin-left: 0.5rem; */
   border-radius: 6px;
   border: 5px solid #f1c886;
   border-width: 0.1px;
-  padding: 0.2rem;
+  /* padding: 0.2rem; */
 }
