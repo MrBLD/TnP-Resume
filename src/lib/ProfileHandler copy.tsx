@@ -19,7 +19,7 @@ function deHash(input: string) {
     return input.split('#');
 }
 
-function ProfileCRUD() {
+function ProfileHandler(formData: any) {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log("Form submitted");
@@ -33,19 +33,18 @@ function ProfileCRUD() {
         return newcounter;
     };
 
-    let [UserName, setUserName] = useState<string>("");
-    let [FirstName, setFirstName] = useState<string>("");
-    let [LastName, setLastName] = useState<string>('');
-    let [MobNo, setMobNo] = useState<string>('');
-    let [LinkedIn, setLinkedIn] = useState<string>('');
-    let [GitHub, setGitHub] = useState<string>('')
-
-    let [InsttName, setInsttName] = useState<string>('')
-    let [Course, setCourse] = useState<string>('')
-    let [Score, setScore] = useState<string>('')
-    let [EduLocation, setEduLocation] = useState<string>('')
-    let [EduStartDate, setEduStartDate] = useState<string>('')
-    let [EduEndDate, setEduEndDate] = useState<string>('')
+    let UserName = formData.UserName;
+    let FirstName = formData.FirstName;
+    let LastName = formData.LastName;
+    let MobNo = formData.MobNo;
+    let LinkedIn = formData.LinkedIn;
+    let GitHub = formData.GitHub;
+    let InsttName = formData.InsttName;
+    let Course = formData.Course;
+    let Score = formData.Score;
+    let EduLocation = formData.EduLocation;
+    let EduStartDate = formData.EduStartDate;
+    let EduEndDate = formData.EduEndDate;
 
     const isNullorWhiteSpaces = (value: any) => {
         value = value.toString();
@@ -104,19 +103,19 @@ function ProfileCRUD() {
             if (snapshot.exists()) {
                 console.log(snapshot.val())
                 let splittedData = snapshot.val().UserInfo.split("#");
-                setUserName(splittedData[0]);
-                setFirstName(splittedData[1]);
-                setLastName(splittedData[2]);
-                setMobNo(splittedData[3]);
-                setLinkedIn(splittedData[4]);
-                setGitHub(splittedData[5]);
+                UserName = (splittedData[0]);
+                FirstName = (splittedData[1]);
+                LastName = (splittedData[2]);
+                MobNo = (splittedData[3]);
+                LinkedIn = (splittedData[4]);
+                GitHub = (splittedData[5]);
                 splittedData = snapshot.val().Educations.Edu_0.split("#");
-                setInsttName(splittedData[0]);
-                setCourse(splittedData[1]);
-                setScore(splittedData[2]);
-                setEduLocation(splittedData[3]);
-                setEduStartDate(splittedData[4]);
-                setEduEndDate(splittedData[5]);
+                InsttName = (splittedData[0]);
+                Course = (splittedData[1]);
+                Score = (splittedData[2]);
+                EduLocation = (splittedData[3]);
+                EduStartDate = (splittedData[4]);
+                EduEndDate = (splittedData[5]);
             }
             else {
                 alert("no data available")
@@ -195,4 +194,4 @@ function ProfileCRUD() {
 
 }
 
-export default ProfileCRUD
+export default ProfileHandler

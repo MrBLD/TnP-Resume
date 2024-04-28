@@ -5,10 +5,73 @@ import { Label } from "@/components/ui/label";
 import { cn } from "@/utils/cn";
 
 function ResumePage() {
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Form submitted");
+
+        const UserName = (document.getElementById("UserName") as HTMLInputElement).value
+        const ResumeName = (document.getElementById("ResumeName") as HTMLInputElement).value
+        const OrgName = (document.getElementById("OrgName") as HTMLInputElement).value
+        const ExpTitle = (document.getElementById("ExpTitle") as HTMLInputElement).value
+        const ExpRole = (document.getElementById("ExpRole") as HTMLInputElement).value
+        const Description = (document.getElementById("Description") as HTMLInputElement).value
+        const ExpLocation = (document.getElementById("ExpLocation") as HTMLInputElement).value
+        const ExpStartDate = (document.getElementById("ExpStartDate") as HTMLInputElement).value
+        const ExpEndDate = (document.getElementById("ExpEndDate") as HTMLInputElement).value
+        const PTitle = (document.getElementById("PTitle") as HTMLInputElement).value
+        const PRole = (document.getElementById("PRole") as HTMLInputElement).value
+        const PDescription = (document.getElementById("PDescription") as HTMLInputElement).value
+        const PStartDate = (document.getElementById("PStartDate") as HTMLInputElement).value
+        const PEndDate = (document.getElementById("PEndDate") as HTMLInputElement).value
+        const ProggLang = (document.getElementById("ProggLang") as HTMLInputElement).value
+        const Tools = (document.getElementById("Tools") as HTMLInputElement).value
+        const Lang = (document.getElementById("Lang") as HTMLInputElement).value
+        const more_info = (document.getElementById("more_info") as HTMLInputElement).value
+        const AchExpTitle = (document.getElementById("AchExpTitle") as HTMLInputElement).value
+        const AchInfo = (document.getElementById("AchInfo") as HTMLInputElement).value
+
+        const formData = {
+            UserName,
+            ResumeName,
+            OrgName,
+            ExpTitle,
+            ExpRole,
+            Description,
+            ExpLocation,
+            ExpStartDate,
+            ExpEndDate,
+            PTitle,
+            PRole,
+            PDescription,
+            PStartDate,
+            PEndDate,
+            ProggLang,
+            Tools,
+            Lang,
+            more_info,
+            AchExpTitle,
+            AchInfo,
+        }
+        // console.log(formData);
+        try {
+            const response = await fetch('/api/Resume-Submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                console.log('Form data submitted successfully');
+            } else {
+                console.error('Failed to submit form data');
+            }
+        } catch (error) {
+            console.error('Error submitting form data:', error);
+        }
     };
+
     return (
         <main className="flex flex-row-reverse ">
             <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">

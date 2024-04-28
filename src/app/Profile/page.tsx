@@ -1,14 +1,61 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/utils/cn";
+import { log } from "console";
 
 function Profile() {
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Form submitted");
+        const UserName= (document.getElementById("UserName")as HTMLInputElement).value;
+        const FirstName= (document.getElementById("FirstName")as HTMLInputElement).value;
+        const LastName= (document.getElementById("LastName")as HTMLInputElement).value;
+        const MobNo= (document.getElementById("MobNo")as HTMLInputElement).value;
+        const LinkedIn= (document.getElementById("LinkedIn")as HTMLInputElement).value;
+        const GitHub= (document.getElementById("GitHub")as HTMLInputElement).value;
+        const InsttName= (document.getElementById("InsttName")as HTMLInputElement).value;
+        const Course= (document.getElementById("Course")as HTMLInputElement).value;
+        const Score= (document.getElementById("Score")as HTMLInputElement).value;
+        const EduLocation= (document.getElementById("EduLocation")as HTMLInputElement).value;
+        const EduStartDate= (document.getElementById("EduStartDate")as HTMLInputElement).value;
+        const EduEndDate= (document.getElementById("EduEndDate")as HTMLInputElement).value;
+        
+        const formData ={
+            UserName,
+            FirstName,
+            LastName,
+            MobNo,
+            LinkedIn,
+            GitHub,
+            InsttName,
+            Course,
+            Score,
+            EduLocation,
+            EduStartDate,
+            EduEndDate,
+        };
+        console.log(formData);
+        try {
+            const response = await fetch('/api/Profile-Submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                console.log('Form data submitted successfully');
+            } else {
+                console.error('Failed to submit form data');
+            }
+        } catch (error) {
+            console.error('Error submitting form data:', error);
+        }
     };
+
     return (
         <main className="flex flex-row-reverse ">
             <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
@@ -86,21 +133,23 @@ function Profile() {
                             </LabelInputContainer>
                         </div>
                     </div>
-                </form>
-                <div>
-                    <button className="bg-gradient-to-br relative 
+
+                    <div>
+
+                        <button className="bg-gradient-to-br relative 
           group/btn 
           from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Insert data &rarr;<BottomGradient /></button>
-                    <button className="bg-gradient-to-br relative 
+                        <button className="bg-gradient-to-br relative 
           group/btn 
           from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Update data &rarr;<BottomGradient /></button>
-                    <button className="bg-gradient-to-br relative 
+                        <button className="bg-gradient-to-br relative 
           group/btn 
           from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Select data &rarr;<BottomGradient /></button>
-                    <button className="bg-gradient-to-br relative 
+                        <button className="bg-gradient-to-br relative 
           group/btn 
           from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Delete data &rarr;<BottomGradient /></button>
-                </div>
+                    </div>
+                </form>
             </div>
         </main>
     )

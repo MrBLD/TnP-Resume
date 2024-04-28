@@ -22,43 +22,47 @@ function deHash(input: string) {
     return input.split('#');
 }
 
-function FirebaseCrud() {
+function NewResumeHandler(formData: any) {
 
-    let [ExpCounter, setExpCounter] = useState<string>('Exp_0')
-    let [ProjCounter, setProjCounter] = useState<string>('Proj_0')
-    let [AchCounter, setAchCounter] = useState<string>('Ach_0')
+    let ExpCounter='Exp_0'
+    let ProjCounter='Proj_0'
+    let AchCounter='Ach_0'
+    
+    console.log("Profile Handler called: " + formData.UserName);
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log("Form submitted");
+    };
+
+    let EduCounter = 'Edu_0';
+
     const incrementCounter = (counter: string) => {
         const data = counter.split('_')
         const count = parseInt(data[1]);
         const newcounter = `${data[0]}_${count + 1}`;
         return newcounter;
     };
-
-    let [UserName, setUserName] = useState<string>("");
-    let [ResumeName, setResumeName] = useState<string>("");
-
-    let [OrgName, setOrgName] = useState<string>('')
-    let [ExpTitle, setExpTitle] = useState<string>('')
-    let [ExpRole, setExpRole] = useState<string>('')
-    let [Description, setDescription] = useState<string>('')
-    let [ExpLocation, setExpLocation] = useState<string>('')
-    let [ExpStartDate, setExpStartDate] = useState<string>('')
-    let [ExpEndDate, setExpEndDate] = useState<string>('')
-
-    let [PTitle, setPTitle] = useState<string>('')
-    let [PRole, setPRole] = useState<string>('')
-    let [PDescription, setPDescription] = useState<string>('')
-    let [PExpLocation, setPExpLocation] = useState<string>('')
-    let [PStartDate, setPStartDate] = useState<string>('')
-    let [PEndDate, setPEndDate] = useState<string>('')
-
-    let [ProggLang, setProggLang] = useState<string>('')
-    let [Tools, setTools] = useState<string>('')
-    let [Lang, setLang] = useState<string>('')
-    let [more_info, setmore_info] = useState<string>('')
-
-    let [AchExpTitle, setAchExpTitle] = useState<string>('')
-    let [AchInfo, setAchInfo] = useState<string>('')
+    let UserName = formData.UserName;
+    let ResumeName = formData.ResumeName;
+    let OrgName = formData.OrgName;
+    let ExpTitle = formData.ExpTitle;
+    let ExpRole = formData.ExpRole;
+    let Description = formData.Description;
+    let ExpLocation = formData.ExpLocation;
+    let ExpStartDate = formData.ExpStartDate;
+    let ExpEndDate = formData.ExpEndDate;
+    let PTitle = formData.PTitle;
+    let PRole = formData.PRole;
+    let PDescription = formData.PDescription;
+    let PExpLocation= formData.PExpLocation;
+    let PStartDate = formData.PStartDate;
+    let PEndDate = formData.PEndDate;
+    let ProggLang = formData.ProggLang;
+    let Tools = formData.Tools;
+    let Lang = formData.Lang;
+    let more_info = formData.more_info;
+    let AchExpTitle = formData.AchExpTitle;
+    let AchInfo = formData.AchInfo;
 
     const isNullorWhiteSpaces = (value: any) => {
         value = value.toString();
@@ -121,28 +125,28 @@ function FirebaseCrud() {
             if (snapshot.exists()) {
                 console.log(snapshot.val())
                 let splittedData = snapshot.val().Experiences.Exp_0.split("#");
-                setOrgName(splittedData[0]);
-                setExpTitle(splittedData[1]);
-                setExpRole(splittedData[2]);
-                setDescription(splittedData[3]);
-                setExpLocation(splittedData[4]);
-                setExpStartDate(splittedData[5]);
-                setExpEndDate(splittedData[6]);
-                splittedData = snapshot.val().Projects.Proj_0.split("#");
-                setPTitle(splittedData[0])
-                setPRole(splittedData[1])
-                setPDescription(splittedData[2])
-                setPExpLocation(splittedData[3])
-                setPStartDate(splittedData[4])
-                setPEndDate(splittedData[5])
-                splittedData = snapshot.val().SkillsInfo.split("#");
-                setProggLang(splittedData[0]);
-                setTools(splittedData[1]);
-                setLang(splittedData[2]);
-                setmore_info(splittedData[3]);
-                splittedData = snapshot.val().Achievements.Ach_0.split("#");
-                setAchExpTitle(splittedData[0]);
-                setAchInfo(splittedData[1]);
+                OrgName=(splittedData[0]);
+                ExpTitle=(splittedData[1]);
+                ExpRole=(splittedData[2]);
+                Description=(splittedData[3]);
+                ExpLocation=(splittedData[4]);
+                ExpStartDate=(splittedData[5]);
+                ExpEndDate=(splittedData[6]);
+                splittedData= snapshot.val().Projects.Proj_0.split("#");
+                PTitle=(splittedData[0])
+                PRole=(splittedData[1])
+                PDescription=(splittedData[2])
+                PExpLocation=(splittedData[3])
+                PStartDate=(splittedData[4])
+                PEndDate=(splittedData[5])
+                splittedData= snapshot.val().SkillsInfo.split("#");
+                ProggLang=(splittedData[0]);
+                Tools=(splittedData[1]);
+                Lang=(splittedData[2]);
+                more_info=(splittedData[3]);
+                splittedData= snapshot.val().Achievements.Ach_0.split("#");
+                AchExpTitle=(splittedData[0]);
+                AchInfo=(splittedData[1]);
             }
             else {
                 alert("no data available")
