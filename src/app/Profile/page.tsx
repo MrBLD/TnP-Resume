@@ -9,6 +9,11 @@ import { log } from "console";
 
 
 function Profile() {
+    const isNullorWhiteSpaces = (value: any) => {
+        value = value.toString();
+        return (value == null || value.replaceAll(' ', '').length < 1);
+    }
+    
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -24,6 +29,11 @@ function Profile() {
         const EduLocation = (document.getElementById("EduLocation") as HTMLInputElement).value;
         const EduStartDate = (document.getElementById("EduStartDate") as HTMLInputElement).value;
         const EduEndDate = (document.getElementById("EduEndDate") as HTMLInputElement).value;
+        
+        if (isNullorWhiteSpaces(UserName) || isNullorWhiteSpaces(FirstName) || isNullorWhiteSpaces(MobNo) || isNullorWhiteSpaces(LastName)) {
+            alert("Please fill all the Mandatory(*) fields");
+            return;
+        }
 
         const formData = {
             UserName,
@@ -74,35 +84,35 @@ function Profile() {
                         <div>
                             <div>
                                 <LabelInputContainer className="py-4">
-                                    <Label htmlFor="UserName">UserName</Label>
+                                    <Label htmlFor="UserName">UserName*</Label>
                                     <Input type="text" placeholder="Give Your Username Here" id="UserName" />
                                 </LabelInputContainer>
 
                                 <div className="flex flex-col md:flex-row py-4">
                                     <LabelInputContainer >
-                                        <Label htmlFor="FirstName">FirstName</Label>
+                                        <Label htmlFor="FirstName">FirstName*</Label>
                                         <Input type="text" placeholder="FirstName" id="FirstName" />
                                     </LabelInputContainer>
 
                                     <LabelInputContainer className=" ml-2">
-                                        <Label htmlFor="LastName">LastName</Label>
+                                        <Label htmlFor="LastName">LastName*</Label>
                                         <Input type="text" placeholder="LastName" id="LastName" />
                                     </LabelInputContainer>
                                 </div>
 
                                 <LabelInputContainer className=" py-4">
-                                    <Label htmlFor="MobNo">Mobile Number</Label>
+                                    <Label htmlFor="MobNo">Mobile Number*</Label>
                                     <Input type="number" placeholder="Enter your mobile No." id="MobNo" />
                                 </LabelInputContainer>
 
                                 <LabelInputContainer className="py-4">
                                     <Label htmlFor="LinkedIn">LinkedIn</Label>
-                                    <Input type="url" placeholder="Link to your LinkedIN id" id="LinkedIn" />
+                                    <Input type="text" placeholder="Your LinkedIn id" id="LinkedIn" />
                                 </LabelInputContainer>
 
                                 <LabelInputContainer className="py-4">
                                     <Label htmlFor="GitHub">GitHub</Label>
-                                    <Input type="url" placeholder="Link to your GitHub id" id="GitHub" />
+                                    <Input type="text" placeholder="Your GitHub id" id="GitHub" />
                                 </LabelInputContainer>
                             </div>
                             <div>

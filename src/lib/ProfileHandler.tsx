@@ -52,11 +52,7 @@ function ProfileHandler(formData: any) {
         return (value == null || value.replaceAll(' ', '').length < 1);
     }
     let UpdateData = async () => {
-        console.log("Insert Handler called: " + UserName);
-        if (isNullorWhiteSpaces(UserName) || isNullorWhiteSpaces(FirstName) || isNullorWhiteSpaces(MobNo) || isNullorWhiteSpaces(LastName)) {
-            console.log("Please fill all the Mandatory(*) fields");
-            return;
-        }
+        console.log("Update/Insert Handler called: " + UserName);
 
         let inputStrings = [UserName, FirstName, LastName, MobNo, LinkedIn, GitHub];
         const hashedInfo = addHashBetweenInputs(inputStrings);
@@ -64,7 +60,6 @@ function ProfileHandler(formData: any) {
         const hashedEdu = addHashBetweenInputs(inputStrings);
 
         console.log(hashedInfo, hashedEdu);
-
 
         get(child(dbref, "user-data/" + UserName)).then(snapshot => {
             if (snapshot.exists()) {
