@@ -5,10 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/utils/cn";
 import { log } from "console";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button";
-import {format} from "date-fns";
-import { CalendarIcon } from "@radix-ui/react-icons"
+// import { format } from "date-fns";
 
 
 function Profile() {
@@ -73,399 +70,80 @@ function Profile() {
                     <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">
                         Fill the details to Set-up your Profile
                     </p>
-                    {/*
-                <form className="my-8" onSubmit={handleSubmit}>
-                    <div>
+                    <form className="my-2" onSubmit={handleSubmit}>
                         <div>
-                            <LabelInputContainer className="py-4">
-                                <Label htmlFor="UserName">UserName</Label>
-                                <Input type="text" placeholder="UserName" id="UserName" />
-                            </LabelInputContainer>
-
-                            <div className="flex flex-col md:flex-row py-4">
-                                <LabelInputContainer className="mx-2">
-                                    <Label htmlFor="FirstName">FirstName</Label>
-                                    <Input type="text" placeholder="FirstName" id="FirstName" />
+                            <div>
+                                <LabelInputContainer className="py-4">
+                                    <Label htmlFor="UserName">UserName</Label>
+                                    <Input type="text" placeholder="Give Your Username Here" id="UserName" />
                                 </LabelInputContainer>
 
-                                <LabelInputContainer className="mx-2">
-                                    <Label htmlFor="LastName">LastName</Label>
-                                    <Input type="text" placeholder="LastName" id="LastName" />
+                                <div className="flex flex-col md:flex-row py-4">
+                                    <LabelInputContainer >
+                                        <Label htmlFor="FirstName">FirstName</Label>
+                                        <Input type="text" placeholder="FirstName" id="FirstName" />
+                                    </LabelInputContainer>
+
+                                    <LabelInputContainer className=" ml-2">
+                                        <Label htmlFor="LastName">LastName</Label>
+                                        <Input type="text" placeholder="LastName" id="LastName" />
+                                    </LabelInputContainer>
+                                </div>
+
+                                <LabelInputContainer className=" py-4">
+                                    <Label htmlFor="MobNo">Mobile Number</Label>
+                                    <Input type="number" placeholder="Enter your mobile No." id="MobNo" />
+                                </LabelInputContainer>
+
+                                <LabelInputContainer className="py-4">
+                                    <Label htmlFor="LinkedIn">LinkedIn</Label>
+                                    <Input type="url" placeholder="Link to your LinkedIN id" id="LinkedIn" />
+                                </LabelInputContainer>
+
+                                <LabelInputContainer className="py-4">
+                                    <Label htmlFor="GitHub">GitHub</Label>
+                                    <Input type="url" placeholder="Link to your GitHub id" id="GitHub" />
                                 </LabelInputContainer>
                             </div>
+                            <div>
+                                <LabelInputContainer className="py-4">
+                                    <Label htmlFor="InsttName">Institute Name</Label>
+                                    <Input type="text" placeholder="Give your Intitute Name" id="InsttName" />
+                                </LabelInputContainer>
 
-                            <LabelInputContainer className=" py-4">
-                                <Label htmlFor="MobNo">Mobile Number</Label>
-                                <Input type="text" placeholder="MobNo" id="MobNo" />
-                            </LabelInputContainer>
+                                <LabelInputContainer className="py-4">
+                                    <Label htmlFor="Course">Course</Label>
+                                    <Input type="text" placeholder="Name of your Course" id="Course" />
+                                </LabelInputContainer>
 
-                            <LabelInputContainer className="py-4">
-                                <Label htmlFor="LinkedIn">LinkedIn</Label>
-                                <Input type="text" placeholder="LinkedIn" id="LinkedIn" />
-                            </LabelInputContainer>
+                                <LabelInputContainer className="py-4">
+                                    <Label htmlFor="Score">Score</Label>
+                                    <Input type="number" placeholder="Give your Final/Last Score" id="Score" />
+                                </LabelInputContainer>
 
-                            <LabelInputContainer className="py-4">
-                                <Label htmlFor="GitHub">GitHub</Label>
-                                <Input type="text" placeholder="GitHub" id="GitHub" />
-                            </LabelInputContainer>
+                                <LabelInputContainer className="py-4">
+                                    <Label htmlFor="EduLocation">College/School Location</Label>
+                                    <Input type="text" placeholder="Location of your School/College" id="EduLocation" />
+                                </LabelInputContainer>
+
+                                <LabelInputContainer className="py-4">
+                                    <Label htmlFor="EduStartDate">Degree Start Date</Label>
+                                    <Input type="month" placeholder="Start Month/Year of your Degree" id="EduStartDate" max={new Date().toISOString().slice(0, 7)} />
+                                    <span className="text-xs ml-4 text-slate-50/50">Start Month/Year of your Degree</span>
+                                </LabelInputContainer>
+
+                                <LabelInputContainer className="py-4">
+                                    <Label htmlFor="EduEndDate">Degree End Date</Label>
+                                    <Input type="month" placeholder="End Month/Year of your Degree" id="EduEndDate" />
+                                    <span className="text-xs ml-4 text-slate-50/50">End Month/Year of your Degree</span>
+                                </LabelInputContainer>
+                            </div>
                         </div>
+
                         <div>
-                            <LabelInputContainer className="py-4">
-                                <Label htmlFor="InsttName">Institute Name</Label>
-                                <Input type="text" placeholder="InsttName" id="InsttName" />
-                            </LabelInputContainer>
-
-                            <LabelInputContainer className="py-4">
-                                <Label htmlFor="Course">Course</Label>
-                                <Input type="text" placeholder="Course" id="Course" />
-                            </LabelInputContainer>
-
-                            <LabelInputContainer className="py-4">
-                                <Label htmlFor="Score">Score</Label>
-                                <Input type="text" placeholder="Score" id="Score" />
-                            </LabelInputContainer>
-
-                            <LabelInputContainer className="py-4">
-                                <Label htmlFor="EduLocation">College/School Location</Label>
-                                <Input type="text" placeholder="EduLocation" id="EduLocation" />
-                            </LabelInputContainer>
-
-                            <LabelInputContainer className="py-4">
-                                <Label htmlFor="EduStartDate">Degree Start Date</Label>
-                                <Input type="text" placeholder="EduStartDate" id="EduStartDate" />
-                            </LabelInputContainer>
-
-                            <LabelInputContainer className="py-4">
-                                <Label htmlFor="EduEndDate">Degree End Date</Label>
-                                <Input type="text" placeholder="EduEndDate" id="EduEndDate" />
-                            </LabelInputContainer>
+                            <button className="my-3 py-2 bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Update &rarr;<BottomGradient /></button>
                         </div>
-                    </div>
-
-                    <div>
-                        <button className="my-3 py-2 bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Insert data &rarr;<BottomGradient /></button>
-                        <button className="my-3 py-2 bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Update data &rarr;<BottomGradient /></button>
-                        <button className="my-3 py-2 bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Select data &rarr;<BottomGradient /></button>
-                        <button className="my-3 py-2 bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Delete data &rarr;<BottomGradient /></button>
-                    </div>
-                </form> */}
-
-                    <Tabs defaultValue="insert" className="relative mr-auto w-fit dark:text-white">
-                        <TabsList className="bg-zinc-800 grid grid-cols-4 border-y">
-                            <TabsTrigger value="insert" className="border-x mx-2 bg-inherit focus-within:bg-black focus-within:hover:bg-black hover:bg-gray-950">Insert</TabsTrigger>
-                            <TabsTrigger value="update" className="border-x mx-2 bg-inherit focus-within:bg-black focus-within:hover:bg-black hover:bg-gray-950">Update</TabsTrigger>
-                            <TabsTrigger value="select" className="border-x mx-2 bg-inherit focus-within:bg-black focus-within:hover:bg-black hover:bg-gray-950">Select</TabsTrigger>
-                            <TabsTrigger value="delete" className="border-x mx-2 bg-inherit focus-within:bg-black focus-within:hover:bg-black hover:bg-gray-950">Delete</TabsTrigger>
-                        </TabsList>
-                        <TabsContent value="insert">
-                            <form className="my-8" onSubmit={handleSubmit}>
-                                <div>
-                                    <p>Fill the form below to Insert Value</p>
-                                    <div>
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="UserName">UserName</Label>
-                                            <Input type="text" placeholder="Give Your Username Here" id="UserName" />
-                                        </LabelInputContainer>
-
-                                        <div className="flex flex-col md:flex-row py-4">
-                                            <LabelInputContainer className="mx-2">
-                                                <Label htmlFor="FirstName">FirstName</Label>
-                                                <Input type="text" placeholder="FirstName" id="FirstName" />
-                                            </LabelInputContainer>
-
-                                            <LabelInputContainer className="mx-2">
-                                                <Label htmlFor="LastName">LastName</Label>
-                                                <Input type="text" placeholder="LastName" id="LastName" />
-                                            </LabelInputContainer>
-                                        </div>
-
-                                        <LabelInputContainer className=" py-4">
-                                            <Label htmlFor="MobNo">Mobile Number</Label>
-                                            <Input type="number" placeholder="Enter your mobile No." id="MobNo" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="LinkedIn">LinkedIn</Label>
-                                            <Input type="url" placeholder="Link to your LinkedIN id" id="LinkedIn" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="GitHub">GitHub</Label>
-                                            <Input type="url" placeholder="Link to your GitHub id" id="GitHub" />
-                                        </LabelInputContainer>
-                                    </div>
-                                    <div>
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="InsttName">Institute Name</Label>
-                                            <Input type="text" placeholder="Give your Intitute Name" id="InsttName" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="Course">Course</Label>
-                                            <Input type="text" placeholder="Name of your Course" id="Course" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="Score">Score</Label>
-                                            <Input type="number" placeholder="Give your Final/Last Score" id="Score" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduLocation">College/School Location</Label>
-                                            <Input type="text" placeholder="Location of your School/College" id="EduLocation" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduStartDate">Degree Start Date</Label>
-                                            <Input type="month" placeholder="Start Month/Year of your Degree" id="EduStartDate" max={new Date().toISOString().slice(0, 7)}/>
-                                            <span className="text-xs ml-4 text-slate-50/50">Start Month/Year of your Degree</span>
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduEndDate">Degree End Date</Label>
-                                            <Input type="month" placeholder="End Month/Year of your Degree" id="EduEndDate"/>
-                                            <span className="text-xs ml-4 text-slate-50/50">End Month/Year of your Degree</span>
-                                        </LabelInputContainer>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <button className="my-3 py-2 bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Insert data &rarr;<BottomGradient /></button>
-                                </div>
-                            </form>
-                        </TabsContent>
-                        <TabsContent value="select">
-                            <form className="my-8" onSubmit={handleSubmit}>
-                                <div>
-                                <p>Fill the form below to Select Value</p>
-                                    <div>
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="UserName">UserName</Label>
-                                            <Input type="text" placeholder="Give Your Username Here" id="UserName" />
-                                        </LabelInputContainer>
-
-                                        <div className="flex flex-col md:flex-row py-4">
-                                            <LabelInputContainer className="mx-2">
-                                                <Label htmlFor="FirstName">FirstName</Label>
-                                                <Input type="text" placeholder="FirstName" id="FirstName" />
-                                            </LabelInputContainer>
-
-                                            <LabelInputContainer className="mx-2">
-                                                <Label htmlFor="LastName">LastName</Label>
-                                                <Input type="text" placeholder="LastName" id="LastName" />
-                                            </LabelInputContainer>
-                                        </div>
-
-                                        <LabelInputContainer className=" py-4">
-                                            <Label htmlFor="MobNo">Mobile Number</Label>
-                                            <Input type="number" placeholder="Enter your mobile No." id="MobNo" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="LinkedIn">LinkedIn</Label>
-                                            <Input type="url" placeholder="Link to your LinkedIN id" id="LinkedIn" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="GitHub">GitHub</Label>
-                                            <Input type="url" placeholder="Link to your GitHub id" id="GitHub" />
-                                        </LabelInputContainer>
-                                    </div>
-                                    <div>
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="InsttName">Institute Name</Label>
-                                            <Input type="text" placeholder="Give your Intitute Name" id="InsttName" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="Course">Course</Label>
-                                            <Input type="text" placeholder="Name of your Course" id="Course" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="Score">Score</Label>
-                                            <Input type="number" placeholder="Give your Final/Last Score" id="Score" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduLocation">College/School Location</Label>
-                                            <Input type="text" placeholder="Location of your School/College" id="EduLocation" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduStartDate">Degree Start Date</Label>
-                                            <Input type="month" placeholder="Start Month/Year of your Degree" id="EduStartDate" max={new Date().toISOString().slice(0, 7)}/>
-                                            <span className="text-xs ml-4 text-slate-50/50">Start Month/Year of your Degree</span>
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduEndDate">Degree End Date</Label>
-                                            <Input type="month" placeholder="End Month/Year of your Degree" id="EduEndDate"/>
-                                            <span className="text-xs ml-4 text-slate-50/50">End Month/Year of your Degree</span>
-                                        </LabelInputContainer>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <button className="my-3 py-2 bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Select data &rarr;<BottomGradient /></button>
-                                </div>
-                            </form>
-                        </TabsContent>
-                        <TabsContent value="update">
-                            <form className="my-8" onSubmit={handleSubmit}>
-                                <div>
-                                <p>Fill the form below to update Value</p>
-                                    <div>
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="UserName">UserName</Label>
-                                            <Input type="text" placeholder="Give Your Username Here" id="UserName" />
-                                        </LabelInputContainer>
-
-                                        <div className="flex flex-col md:flex-row py-4">
-                                            <LabelInputContainer className="mx-2">
-                                                <Label htmlFor="FirstName">FirstName</Label>
-                                                <Input type="text" placeholder="FirstName" id="FirstName" />
-                                            </LabelInputContainer>
-
-                                            <LabelInputContainer className="mx-2">
-                                                <Label htmlFor="LastName">LastName</Label>
-                                                <Input type="text" placeholder="LastName" id="LastName" />
-                                            </LabelInputContainer>
-                                        </div>
-
-                                        <LabelInputContainer className=" py-4">
-                                            <Label htmlFor="MobNo">Mobile Number</Label>
-                                            <Input type="number" placeholder="Enter your mobile No." id="MobNo" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="LinkedIn">LinkedIn</Label>
-                                            <Input type="url" placeholder="Link to your LinkedIN id" id="LinkedIn" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="GitHub">GitHub</Label>
-                                            <Input type="url" placeholder="Link to your GitHub id" id="GitHub" />
-                                        </LabelInputContainer>
-                                    </div>
-                                    <div>
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="InsttName">Institute Name</Label>
-                                            <Input type="text" placeholder="Give your Intitute Name" id="InsttName" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="Course">Course</Label>
-                                            <Input type="text" placeholder="Name of your Course" id="Course" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="Score">Score</Label>
-                                            <Input type="number" placeholder="Give your Final/Last Score" id="Score" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduLocation">College/School Location</Label>
-                                            <Input type="text" placeholder="Location of your School/College" id="EduLocation" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduStartDate">Degree Start Date</Label>
-                                            <Input type="month" placeholder="Start Month/Year of your Degree" id="EduStartDate" max={new Date().toISOString().slice(0, 7)}/>
-                                            <span className="text-xs ml-4 text-slate-50/50">Start Month/Year of your Degree</span>
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduEndDate">Degree End Date</Label>
-                                            <Input type="month" placeholder="End Month/Year of your Degree" id="EduEndDate"/>
-                                            <span className="text-xs ml-4 text-slate-50/50">End Month/Year of your Degree</span>
-                                        </LabelInputContainer>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <button className="my-3 py-2 bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Update data &rarr;<BottomGradient /></button>
-                                </div>
-                            </form>
-                        </TabsContent>
-                        <TabsContent value="delete">
-                            <form className="my-8" onSubmit={handleSubmit}>
-                                <div>
-                                <p>Fill the form below to delete Value</p>
-                                    <div>
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="UserName">UserName</Label>
-                                            <Input type="text" placeholder="Give Your Username Here" id="UserName" />
-                                        </LabelInputContainer>
-
-                                        <div className="flex flex-col md:flex-row py-4">
-                                            <LabelInputContainer className="mx-2">
-                                                <Label htmlFor="FirstName">FirstName</Label>
-                                                <Input type="text" placeholder="FirstName" id="FirstName" />
-                                            </LabelInputContainer>
-
-                                            <LabelInputContainer className="mx-2">
-                                                <Label htmlFor="LastName">LastName</Label>
-                                                <Input type="text" placeholder="LastName" id="LastName" />
-                                            </LabelInputContainer>
-                                        </div>
-
-                                        <LabelInputContainer className=" py-4">
-                                            <Label htmlFor="MobNo">Mobile Number</Label>
-                                            <Input type="number" placeholder="Enter your mobile No." id="MobNo" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="LinkedIn">LinkedIn</Label>
-                                            <Input type="url" placeholder="Link to your LinkedIN id" id="LinkedIn" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="GitHub">GitHub</Label>
-                                            <Input type="url" placeholder="Link to your GitHub id" id="GitHub" />
-                                        </LabelInputContainer>
-                                    </div>
-                                    <div>
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="InsttName">Institute Name</Label>
-                                            <Input type="text" placeholder="Give your Intitute Name" id="InsttName" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="Course">Course</Label>
-                                            <Input type="text" placeholder="Name of your Course" id="Course" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="Score">Score</Label>
-                                            <Input type="number" placeholder="Give your Final/Last Score" id="Score" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduLocation">College/School Location</Label>
-                                            <Input type="text" placeholder="Location of your School/College" id="EduLocation" />
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduStartDate">Degree Start Date</Label>
-                                            <Input type="month" placeholder="Start Month/Year of your Degree" id="EduStartDate" max={new Date().toISOString().slice(0, 7)}/>
-                                            <span className="text-xs ml-4 text-slate-50/50">Start Month/Year of your Degree</span>
-                                        </LabelInputContainer>
-
-                                        <LabelInputContainer className="py-4">
-                                            <Label htmlFor="EduEndDate">Degree End Date</Label>
-                                            <Input type="month" placeholder="End Month/Year of your Degree" id="EduEndDate"/>
-                                            <span className="text-xs ml-4 text-slate-50/50">End Month/Year of your Degree</span>
-                                        </LabelInputContainer>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <button className="my-3 py-2 bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-2" type="submit" >Delete data &rarr;<BottomGradient /></button>
-                                </div>
-                            </form>
-                        </TabsContent>
-                    </Tabs>
+                    </form>
 
 
                 </div>
